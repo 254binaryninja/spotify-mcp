@@ -95,3 +95,6 @@ def play_album(album_name: str) -> str:
     else:
         return f"Album not found: {album_name}"
 
+    if __name__ == "__main__":
+        mcp.run()
+
