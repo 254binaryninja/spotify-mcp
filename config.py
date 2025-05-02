@@ -9,5 +9,5 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id=settings.SPOTIFY_CLIENT_ID,
     client_secret=settings.SPOTIFY_CLIENT_SECRET,
     redirect_uri="http://localhost:8888/callback",
-    scope="user-library-read user-library-modify playlist-modify-public playlist-modify-private"
+    scope="user-read-playback-state user-modify-playback-state user-library-read user-library-modify playlist-modify-public playlist-modify-private"
 ))
