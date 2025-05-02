@@ -15,9 +15,14 @@ class Settings(BaseSettings):
     SPOTIFY_CLIENT_ID: str = os.getenv("SPOTIFY_CLIENT_ID")
     SPOTIFY_CLIENT_SECRET: str = os.getenv("SPOTIFY_CLIENT_SECRET")
 
+    def validate(self):
+        if not self.SPOTIFY_CLIENT_ID or not self.SPOTIFY_CLIENT_SECRET:
+            raise ValueError("SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET must be set")
+
 class Config:
     case_sensitive = True
     env_file = ".env"
 
 
 settings = Settings()
+settings.validate()
