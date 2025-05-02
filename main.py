@@ -5,7 +5,7 @@ from mcp.server.fastmcp import FastMCP
 
 ## Create the MCP server
 
-mcp = FastMCP("spotify-mcp-server")
+mcp = FastMCP("spotify-mcp-server",dependencies=["spotipy"])
 
 ## Create playback tools
 
