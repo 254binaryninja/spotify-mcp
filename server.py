@@ -8,7 +8,6 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("spotify-mcp-server")
 
 ## Create playback tools
-
 @mcp.tool()
 def play() -> str:
     """
@@ -94,6 +93,25 @@ def play_album(album_name: str) -> str:
         return f"Playing album: {album_name}"
     else:
         return f"Album not found: {album_name}"
+
+@mcp.tool()
+def play_track(track_name:str) -> str :
+    """
+        Play a track by its name
+
+        Args:
+            track_name (str): The name of the album to play
+        Returns:
+            str: A message indicating the result of the operation
+        """
+
+    results = sp.search(q=f"track:{track_name}", type="track")
+    if results['tracks']['items']:
+          track_id = results['tracks']['items'][0]['id']
+          sp.start_playback(context_uri=f"spotify:track:{track_id}")
+          return f"Playing track: {track_name} found from :{results['tracks']['items']}"
+    else:
+        return f"Track not found: {track_name}"
 
     if __name__ == "__server__":
         mcp.run()
