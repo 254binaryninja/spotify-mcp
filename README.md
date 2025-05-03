@@ -38,10 +38,14 @@ Before setting up the server, ensure you have the following:
    ```bash
    pip install uv
    ```
-
-4. Install dependencies using `uv`:
+   Windows
    ```bash
-   uv install
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+4. Install dependencies using `uv` from the pyproject.toml file:
+   ```bash
+   uv sync
    ```
 
 5. Create a `.env` file in the project root and add your Spotify credentials:
@@ -64,13 +68,41 @@ Before setting up the server, ensure you have the following:
    - `play_album("album_name")`: Play a specific album by name.
    - `play_track("track_name")`: Play a specific track by name.
 
+3. Add MCP tools to your MCP client. For example, if you're using Claude:
+     Add this at the root of your project
+    ```bash
+   uv mcp install server.py
+   ```
+## Example Using Calude Desktop
+
+ Here is the JSON file
+  ```
+  {
+  "mcpServers": {
+    "spotify-mcp-server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp[cli]",
+        "mcp",
+        "run",
+        "~path to project\\spotify-mcp-server\\server.py"
+      ]
+    }
+  }
+}
+ ```
+   
+
 ## Troubleshooting
 
 - **Spotify Authentication Failed**: Ensure your `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` are correctly set in the `.env` file.
 - **Server Not Starting**: Verify that the `__name__` check in `server.py` is correctly set to `__main__`:
+  
    ```python
-   if __name__ == "__server__":
-       mcp.run()
+   # if __name__ == "__server__":
+   #  mcp.run()
    ```
 
 ## Contributing
