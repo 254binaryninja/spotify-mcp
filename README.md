@@ -98,11 +98,11 @@ Before setting up the server, ensure you have the following:
 ## Troubleshooting
 
 - **Spotify Authentication Failed**: Ensure your `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` are correctly set in the `.env` file.
-- **Server Not Starting**: Verify that the `__name__` check in `server.py` is correctly set to `__main__`:
+- **Server Not Starting**: Verify that the `__name__` check in `server.py` is correctly set to `__server__`:
   
    ```python
-   # if __name__ == "__server__":
-   #  mcp.run()
+    if __name__ == "__server__":
+     mcp.run()
    ```
 
 ## Contributing
