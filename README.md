@@ -82,7 +82,7 @@ Before setting up the server, ensure you have the following:
     "spotify-mcp-server": {
       "command": "~path-to-project\\spotify-mcp-server\\.venv\\Scripts\\python.exe",
       "args": [
-        "~path-to-project\\PycharmProjects\\spotify-mcp-server\\server.py"
+        "~path-to-project\\spotify-mcp-server\\server.py"
       ],
       "transport": "stdio",
       "env":{
