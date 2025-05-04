@@ -15,6 +15,10 @@ class Settings(BaseSettings):
     SPOTIFY_CLIENT_ID: str = os.getenv("SPOTIFY_CLIENT_ID")
     SPOTIFY_CLIENT_SECRET: str = os.getenv("SPOTIFY_CLIENT_SECRET")
 
+    #Server communication settings
+    TRANSPORT_PROTOCOL: str = os.getenv("TRANSPORT","stdio")
+
+    #Server settings
     def validate(self):
         if not self.SPOTIFY_CLIENT_ID or not self.SPOTIFY_CLIENT_SECRET:
             raise ValueError("SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET must be set")
