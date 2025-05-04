@@ -2,6 +2,12 @@
 
 from config import sp
 from mcp.server.fastmcp import FastMCP
+import logging
+from settings import settings
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("spotify-mcp-server")
 
 ## Create the MCP server
 
@@ -113,6 +119,16 @@ def play_track(track_name:str) -> str :
     else:
         return f"Track not found: {track_name}"
 
-    if __name__ == "__server__":
-        mcp.run()
+if __name__ == "__main__":  # Fix the incorrect "__server__" condition
+    try:
+        transport = settings.TRANSPORT_PROTOCOL
+        if transport == "stdio":
+            logger.info("Starting MCP server with stdio transport...")
+            mcp.run(transport="stdio")
+        elif transport == "sse":
+            logger.info("Starting MCP server with SSE transport...")
+            mcp.run(transport="sse")
+
+    except Exception as e:
+        logger.error(f"Failed to start MCP server: {e}")
 
