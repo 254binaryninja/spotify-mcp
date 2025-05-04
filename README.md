@@ -80,15 +80,16 @@ Before setting up the server, ensure you have the following:
   {
   "mcpServers": {
     "spotify-mcp-server": {
-      "command": "uv",
+      "command": "~path-to-project\\spotify-mcp-server\\.venv\\Scripts\\python.exe",
       "args": [
-        "run",
-        "--with",
-        "mcp[cli]",
-        "mcp",
-        "run",
-        "~path to project\\spotify-mcp-server\\server.py"
-      ]
+        "~path-to-project\\PycharmProjects\\spotify-mcp-server\\server.py"
+      ],
+      "transport": "stdio",
+      "env":{
+        "SPOTIFY_CLIENT_ID": "############",
+        "SPOTIFY_CLIENT_SECRET": "############",
+        "TRANSPORT": "stdio"
+      }
     }
   }
 }
